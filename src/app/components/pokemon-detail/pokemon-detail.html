@@ -1,0 +1,117 @@
+<div class="detail-container">
+  @if (loading()) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Cargando datos...</p>
+    </div>
+  } @else if (pokemon(); as poke) {
+    <button class="back-btn" (click)="goBack()">← Volver a la lista</button>
+
+    <div class="detail-card">
+      <!-- Header: imagen + info básica -->
+      <div class="detail-header">
+        <div class="detail-image-wrapper">
+          <img
+            [src]="getArtwork(poke)"
+            [alt]="poke.name"
+            class="detail-image"
+          />
+        </div>
+
+        <div class="detail-info">
+          <span class="detail-id">#{{ poke.id }}</span>
+          <h1 class="detail-name">{{ poke.name }}</h1>
+
+          <div class="detail-types">
+            @for (t of poke.types; track t.slot) {
+              <span class="type-badge" [attr.data-type]="t.type.name">
+                {{ t.type.name }}
+              </span>
+            }
+          </div>
+
+          <div class="detail-measures">
+            <div class="measure">
+              <span class="measure-value">{{ poke.height / 10 }} m</span>
+              <span class="measure-label">Height</span>
+            </div>
+            <div class="measure">
+              <span class="measure-value">{{ poke.weight / 10 }} kg</span>
+              <span class="measure-label">Weight</span>
+            </div>
+            <div class="measure">
+              <span class="measure-value">{{ poke.base_experience }}</span>
+              <span class="measure-label">Base XP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="detail-section">
+        <h2 class="section-title">Base Stats</h2>
+        <div class="stats-grid">
+          @for (stat of poke.stats; track stat.stat.name) {
+            <div class="stat-row">
+              <span class="stat-label">{{ getStatLabel(stat.stat.name) }}</span>
+              <span class="stat-value">{{ stat.base_stat }}</span>
+              <div class="stat-bar-bg">
+                <div
+                  class="stat-bar-fill"
+                  [style.width.%]="getStatPercent(stat.base_stat)"
+                ></div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Abilities -->
+      <div class="detail-section">
+        <h2 class="section-title">Abilities</h2>
+        <div class="abilities-list">
+          @for (a of poke.abilities; track a.slot) {
+            <span class="ability-badge" [class.hidden-ability]="a.is_hidden">
+              {{ a.ability.name }}
+              @if (a.is_hidden) {
+                <span class="hidden-tag">(hidden)</span>
+              }
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Sprites -->
+      <div class="detail-section">
+        <h2 class="section-title">Sprites</h2>
+        <div class="sprites-row">
+          @if (poke.sprites.front_default) {
+            <div class="sprite-item">
+              <img [src]="poke.sprites.front_default" [alt]="poke.name + ' front'" />
+              <span>Front</span>
+            </div>
+          }
+          @if (poke.sprites.front_shiny) {
+            <div class="sprite-item">
+              <img [src]="poke.sprites.front_shiny" [alt]="poke.name + ' shiny'" />
+              <span>Shiny</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Moves (primeros 20) -->
+      <div class="detail-section">
+        <h2 class="section-title">Moves</h2>
+        <div class="moves-grid">
+          @for (m of poke.moves.slice(0, 20); track m.move.name) {
+            <span class="move-badge">{{ m.move.name }}</span>
+          }
+        </div>
+        @if (poke.moves.length > 20) {
+          <p class="moves-more">+{{ poke.moves.length - 20 }} more moves</p>
+        }
+      </div>
+    </div>
+  }
+</div>

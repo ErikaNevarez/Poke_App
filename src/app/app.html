@@ -3,6 +3,9 @@
     <img src="pokeball.png" alt="Pokeball" class="navbar-icon" />
     <span>Pokemon Fundamental Guide</span>
   </a>
+  @if (totalCount()) {
+    <span class="pokemon-count">{{ totalCount() }} Pokémon disponibles</span>
+  }
 </mat-toolbar>
 
 <main class="main-content">

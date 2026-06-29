@@ -1,10 +1,16 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokemonService } from '../../services/pokemon.service';
 import { Pokemon } from '../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-detail',
+  imports: [MatButtonModule, MatIconModule, MatChipsModule, MatProgressSpinnerModule, MatProgressBarModule],
   templateUrl: './pokemon-detail.html',
   styleUrl: './pokemon-detail.css'
 })

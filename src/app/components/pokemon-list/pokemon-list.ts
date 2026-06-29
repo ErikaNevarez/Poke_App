@@ -1,10 +1,14 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PokemonService } from '../../services/pokemon.service';
 import { PokemonListItem } from '../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-list',
+  imports: [MatButtonModule, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './pokemon-list.html',
   styleUrl: './pokemon-list.css'
 })

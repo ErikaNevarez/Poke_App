@@ -1,11 +1,14 @@
 <div class="detail-container">
   @if (loading()) {
     <div class="loading">
-      <div class="spinner"></div>
+      <mat-spinner diameter="48"></mat-spinner>
       <p>Cargando datos...</p>
     </div>
   } @else if (pokemon(); as poke) {
-    <button class="back-btn" (click)="goBack()">← Volver a la lista</button>
+    <button mat-button (click)="goBack()" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+      Volver a la lista
+    </button>
 
     <div class="detail-card">
       <!-- Header: imagen + info básica -->
@@ -55,12 +58,10 @@
             <div class="stat-row">
               <span class="stat-label">{{ getStatLabel(stat.stat.name) }}</span>
               <span class="stat-value">{{ stat.base_stat }}</span>
-              <div class="stat-bar-bg">
-                <div
-                  class="stat-bar-fill"
-                  [style.width.%]="getStatPercent(stat.base_stat)"
-                ></div>
-              </div>
+              <mat-progress-bar
+                mode="determinate"
+                [value]="getStatPercent(stat.base_stat)"
+              ></mat-progress-bar>
             </div>
           }
         </div>
@@ -69,16 +70,16 @@
       <!-- Abilities -->
       <div class="detail-section">
         <h2 class="section-title">Abilities</h2>
-        <div class="abilities-list">
+        <mat-chip-set>
           @for (a of poke.abilities; track a.slot) {
-            <span class="ability-badge" [class.hidden-ability]="a.is_hidden">
+            <mat-chip [highlighted]="!a.is_hidden">
               {{ a.ability.name }}
               @if (a.is_hidden) {
                 <span class="hidden-tag">(hidden)</span>
               }
-            </span>
+            </mat-chip>
           }
-        </div>
+        </mat-chip-set>
       </div>
 
       <!-- Sprites -->
@@ -100,14 +101,14 @@
         </div>
       </div>
 
-      <!-- Moves (primeros 20) -->
+      <!-- Moves -->
       <div class="detail-section">
         <h2 class="section-title">Moves</h2>
-        <div class="moves-grid">
+        <mat-chip-set>
           @for (m of poke.moves.slice(0, 20); track m.move.name) {
-            <span class="move-badge">{{ m.move.name }}</span>
+            <mat-chip>{{ m.move.name }}</mat-chip>
           }
-        </div>
+        </mat-chip-set>
         @if (poke.moves.length > 20) {
           <p class="moves-more">+{{ poke.moves.length - 20 }} more moves</p>
         }

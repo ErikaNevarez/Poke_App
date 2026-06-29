@@ -1,7 +1,5 @@
 .navbar {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
-  padding: 0.8rem 1.5rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -23,5 +21,5 @@
 }
 
 .main-content {
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 64px);
 }

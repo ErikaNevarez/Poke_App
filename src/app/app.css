@@ -1,0 +1,27 @@
+.navbar {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.navbar-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.main-content {
+  min-height: calc(100vh - 56px);
+}

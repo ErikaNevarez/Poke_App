@@ -55,6 +55,12 @@
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   padding: 2rem;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Header */
@@ -80,6 +86,14 @@
   width: 180px;
   height: 180px;
   object-fit: contain;
+  animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+  0%   { transform: scale(0.3); opacity: 0; }
+  50%  { transform: scale(1.05); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .detail-info {
@@ -213,7 +227,13 @@
   height: 100%;
   background: #e74c3c;
   border-radius: 4px;
-  transition: width 0.4s ease;
+  animation: fillBar 0.8s ease forwards;
+  transform-origin: left;
+}
+
+@keyframes fillBar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 /* Abilities */
